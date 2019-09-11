@@ -1,0 +1,22 @@
+.text {
+  &--size--36 {
+    font-size: 36px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    color: #414141;
+    padding-bottom: 7px;
+  }
+
+  &--size--22 {
+    font-size: 22px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    color: #414141;
+  }
+}
