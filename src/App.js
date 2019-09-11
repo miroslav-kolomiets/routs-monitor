@@ -2,7 +2,6 @@ import React, {PureComponent} from 'react';
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -10,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
-import './App.css';
+import './App.scss';
 import data from './data/data';
 
 import Header from './components/Header/Header';

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Button.css';
+import './Button.scss';
 
 export default class Button extends React.Component {
   render () {
@@ -18,7 +18,7 @@ export default class Button extends React.Component {
     } = this.props;
 
     return (
-      <div className="form-group">
+      <div className="form__group">
         <label className={labelclassname} htmlFor={id}>
           {label}
         </label>
@@ -29,9 +29,9 @@ export default class Button extends React.Component {
           autoComplete={id}
           type={type}
           name={name}
-          onClick={onClick}
           checked={checked}
           onChange={onChange}
+          onClick={onClick}
         >
           {value}
         </button>

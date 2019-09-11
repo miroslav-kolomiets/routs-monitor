@@ -13,16 +13,12 @@
   color: #ffffff;
   display: flex;
   position: relative;
-  z-index: 1;
   display: inline-block;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
   vertical-align: middle;
   cursor: pointer;
-}
-
-.btn-primary {
   position: relative;
   border-width: 0;
   text-decoration: none;
@@ -30,25 +26,25 @@
   fill: currentColor;
   background-color: #ff9000;
   overflow: hidden;
-}
 
-.btn-primary::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  opacity: 1;
-  background-color: rgba(0, 0, 0, 0);
-}
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0);
+  }
 
-.btn-primary:active {
-  background-color: #e88300;
-}
+  &:active {
+    background-color: #e88300;
+  }
 
-.btn-primary:hover {
-  background-color: #ffa42e;
+  &:hover {
+    background-color: #ffa42e;
+  }
 }
