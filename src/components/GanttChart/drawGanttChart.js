@@ -1,0 +1,303 @@
+import * as d3 from 'd3';
+
+function drawGanttChart (state) {
+  var w = 1350;
+  var h = 700;
+
+  var svg = d3
+    .selectAll ('#chart')
+    //.selectAll("svg")
+    .append ('svg')
+    .attr ('width', w)
+    .attr ('height', h)
+    .attr ('class', 'svg');
+
+  var dateFormat = d3.timeParse ('%Y-%m-%d');
+
+  var timeScale = d3
+    .scaleTime ()
+    .domain ([
+      d3.min (state.data.eventsList, function (d) {
+        return dateFormat (d.startTime);
+      }),
+      d3.max (state.data.eventsList, function (d) {
+        return dateFormat (d.endTime);
+      }),
+    ])
+    .range ([0, w - 150]);
+
+  var categories = [];
+
+  for (var i = 0; i < state.data.eventsList.length; i++) {
+    categories.push (state.data.eventsList[i].type);
+  }
+
+  var catsUnfiltered = categories; //for vert labels
+
+  categories = checkUnique (categories);
+
+  makeGant (state.data.eventsList, w, h);
+
+  function makeGant (tasks, pageWidth, pageHeight) {
+    var barHeight = 60;
+    var gap = barHeight + 4;
+    var topPadding = 75;
+    var sidePadding = 75;
+
+    var colorScale = d3
+      .scaleLinear ()
+      .domain ([0, categories.length])
+      .range (['#00B9FA', '#F95002'])
+      .interpolate (d3.interpolateHcl);
+
+    makeGrid (sidePadding, topPadding, pageWidth, pageHeight);
+    drawRects (
+      tasks,
+      gap,
+      topPadding,
+      sidePadding,
+      barHeight,
+      colorScale,
+      pageWidth,
+      pageHeight
+    );
+    vertLabels (gap, topPadding, sidePadding, barHeight, colorScale);
+  }
+
+  function drawRects (
+    theArray,
+    theGap,
+    theTopPad,
+    theSidePad,
+    theBarHeight,
+    theColorScale,
+    w,
+    h
+  ) {
+    var bigRects = svg
+      .append ('g')
+      .selectAll ('rect')
+      .data (theArray)
+      .enter ()
+      .append ('rect')
+      .attr ('x', 0)
+      .attr ('y', function (d, i) {
+        return i * theGap + theTopPad - 2;
+      })
+      .attr ('width', function (d) {
+        return w - theSidePad / 2;
+      })
+      .attr ('height', theGap)
+      .attr ('stroke', 'black')
+      .attr ('stroke-dasharray', '5,5')
+      .attr ('fill', function (d) {
+        for (var i = 0; i < categories.length; i++) {
+          if (d.type === categories[i]) {
+            // return d3.rgb (theColorScale (i));
+            // Background color
+            return '#fff';
+          }
+        }
+      })
+      .attr ('opacity', 0.2);
+
+    var rectangles = svg
+      .append ('g')
+      .selectAll ('rect')
+      .data (theArray)
+      .enter ();
+
+    var innerRects = rectangles
+      .append ('rect')
+      .attr ('rx', 3)
+      .attr ('ry', 3)
+      .attr ('x', function (d) {
+        return timeScale (dateFormat (d.startTime)) + theSidePad;
+      })
+      .attr ('y', function (d, i) {
+        return i * theGap + theTopPad;
+      })
+      .attr ('width', function (d) {
+        return (
+          timeScale (dateFormat (d.endTime)) -
+          timeScale (dateFormat (d.startTime))
+        );
+      })
+      .attr ('height', theBarHeight)
+      .attr ('stroke', 'none')
+      .attr ('fill', function (d) {
+        for (var i = 0; i < categories.length; i++) {
+          if (d.type === categories[i]) {
+            // return d3.rgb (theColorScale (i));
+            // Events colors
+            return '#7791ad';
+          }
+        }
+      });
+
+    var rectText = rectangles
+      .append ('text')
+      .text (function (d) {
+        return d.task;
+      })
+      .attr ('x', function (d) {
+        return (
+          (timeScale (dateFormat (d.endTime)) -
+            timeScale (dateFormat (d.startTime))) /
+            2 +
+          timeScale (dateFormat (d.startTime)) +
+          theSidePad
+        );
+      })
+      .attr ('y', function (d, i) {
+        return i * theGap + 14 + theTopPad;
+      })
+      .attr ('font-size', 11)
+      .attr ('text-anchor', 'middle')
+      .attr ('text-height', theBarHeight)
+      .attr ('fill', '#fff');
+
+    innerRects
+      .on ('click', function (e) {
+        //console.log(this);
+        var tag = '';
+
+        tag = `<p class="text text--size--14">${d3
+          .select (this)
+          .data ()[0].details}</p>
+          <p class="text text--size--14">Date: ${d3
+                                                 .select (this)
+                                                 .data ()[0].startTime}</p>
+          <p class="text text--size--14">Time: ${d3
+                                                 .select (this)
+                                                 .data ()[0].startTime}</p>
+          <div class="tag__controls">
+            <div class="tag__controls-row">
+              <button class="btn btn-secondary">Experiment</button>
+              <button class="btn btn-secondary">Kibana</button>
+            </div>
+            <div class="tag__controls-row">
+              <button class="btn btn-secondary">Funnel</button>
+              <button class="btn btn-secondary">Update</button>
+            </div>
+          </div>`;
+
+        var output = document.getElementById ('tag');
+
+        var x =
+          this.x.animVal.value + this.width.animVal.value / 2 - 120 + 'px';
+        var y = this.y.animVal.value + 115 + 'px';
+
+        output.innerHTML = tag;
+        output.style.top = y;
+        output.style.left = x;
+        output.style.display = 'block';
+      })
+      .on ('mouseout', function () {
+        var output = document.getElementById ('tag');
+        // output.style.display = 'none';
+      });
+  }
+
+  function makeGrid (theSidePad, theTopPad, w, h) {
+    var xAxis = d3
+      .axisBottom (timeScale)
+      .ticks (d3.timeDay, 1)
+      .tickSize (-h + theTopPad + 20, 0, 0)
+      .tickFormat (d3.timeFormat ('%d %b'));
+
+    var grid = svg
+      .append ('g')
+      .attr ('class', 'grid')
+      .attr ('transform', 'translate(' + theSidePad + ', ' + (h - 50) + ')')
+      .call (xAxis)
+      .selectAll ('text')
+      .style ('text-anchor', 'middle')
+      .attr ('fill', '#000')
+      .attr ('stroke', 'none')
+      .attr ('font-size', 10)
+      .attr ('dy', '1em');
+  }
+
+  function vertLabels (
+    theGap,
+    theTopPad,
+    theSidePad,
+    theBarHeight,
+    theColorScale
+  ) {
+    var numOccurances = [];
+    var prevGap = 0;
+
+    for (var i = 0; i < categories.length; i++) {
+      numOccurances[i] = [
+        categories[i],
+        getCount (categories[i], catsUnfiltered),
+      ];
+    }
+
+    var axisText = svg
+      .append ('g') //without doing this, impossible to put grid lines behind text
+      .selectAll ('text')
+      .data (numOccurances)
+      .enter ()
+      .append ('text')
+      .text (function (d) {
+        return d[0];
+      })
+      .attr ('x', 10)
+      .attr ('y', function (d, i) {
+        if (i > 0) {
+          for (var j = 0; j < i; j++) {
+            prevGap += numOccurances[i - 1][1];
+            // console.log(prevGap);
+            return d[1] * theGap / 2 + prevGap * theGap + theTopPad;
+          }
+        } else {
+          return d[1] * theGap / 2 + theTopPad;
+        }
+      })
+      .attr ('font-size', 11)
+      .attr ('text-anchor', 'start')
+      .attr ('text-height', 14)
+      .attr ('fill', function (d) {
+        for (var i = 0; i < categories.length; i++) {
+          if (d[0] === categories[i]) {
+            //  console.log("true!");
+            // return d3.rgb (theColorScale (i)).darker ();
+            // Font color
+            return '#414141';
+          }
+        }
+      });
+  }
+
+  //from this stackexchange question: http://stackoverflow.com/questions/1890203/unique-for-arrays-in-javascript
+  function checkUnique (arr) {
+    var hash = {}, result = [];
+    for (var i = 0, l = arr.length; i < l; ++i) {
+      if (!hash.hasOwnProperty (arr[i])) {
+        //it works with objects! in FF, at least
+        hash[arr[i]] = true;
+        result.push (arr[i]);
+      }
+    }
+    return result;
+  }
+
+  //from this stackexchange question: http://stackoverflow.com/questions/14227981/count-how-many-strings-in-an-array-have-duplicates-in-the-same-array
+  function getCounts (arr) {
+    var i = arr.length, // var to loop over
+      obj = {}; // obj to store results
+    while (i)
+      obj[arr[--i]] = (obj[arr[i]] || 0) + 1; // count occurrences
+    return obj;
+  }
+
+  // get specific from everything
+  function getCount (word, arr) {
+    return getCounts (arr)[word] || 0;
+  }
+}
+
+export {drawGanttChart};
