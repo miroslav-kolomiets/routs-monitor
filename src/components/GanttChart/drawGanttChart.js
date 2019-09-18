@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 
 function drawGanttChart (state) {
   var w = 1350;
-  var h = 700;
+  var h = 850;
 
   var svg = d3
     .selectAll ('#chart')
@@ -88,8 +88,8 @@ function drawGanttChart (state) {
         return w - theSidePad / 2;
       })
       .attr ('height', theGap)
-      .attr ('stroke', 'black')
-      .attr ('stroke-dasharray', '5,5')
+      // .attr ('stroke', 'black')
+      // .attr ('stroke-dasharray', '5,5')
       .attr ('fill', function (d) {
         for (var i = 0; i < categories.length; i++) {
           if (d.type === categories[i]) {
@@ -150,9 +150,31 @@ function drawGanttChart (state) {
         );
       })
       .attr ('y', function (d, i) {
-        return i * theGap + 14 + theTopPad;
+        return i * theGap + 24 + theTopPad;
       })
-      .attr ('font-size', 11)
+      .attr ('font-size', 16)
+      .attr ('text-anchor', 'middle')
+      .attr ('text-height', theBarHeight)
+      .attr ('fill', '#fff');
+
+    var rectTextLoad = rectangles
+      .append ('text')
+      .text (function (d) {
+        return d.load;
+      })
+      .attr ('x', function (d) {
+        return (
+          (timeScale (dateFormat (d.endTime)) -
+            timeScale (dateFormat (d.startTime))) /
+            2 +
+          timeScale (dateFormat (d.startTime)) +
+          theSidePad
+        );
+      })
+      .attr ('y', function (d, i) {
+        return i * theGap + 44 + theTopPad;
+      })
+      .attr ('font-size', 16)
       .attr ('text-anchor', 'middle')
       .attr ('text-height', theBarHeight)
       .attr ('fill', '#fff');
@@ -186,7 +208,7 @@ function drawGanttChart (state) {
 
         var x =
           this.x.animVal.value + this.width.animVal.value / 2 - 120 + 'px';
-        var y = this.y.animVal.value + 115 + 'px';
+        var y = this.y.animVal.value + 65 + 'px';
 
         output.innerHTML = tag;
         output.style.top = y;
@@ -209,13 +231,16 @@ function drawGanttChart (state) {
     var grid = svg
       .append ('g')
       .attr ('class', 'grid')
+      .attr ('stroke', 'black')
+      .attr ('stroke-dasharray', '5,5')
       .attr ('transform', 'translate(' + theSidePad + ', ' + (h - 50) + ')')
       .call (xAxis)
       .selectAll ('text')
       .style ('text-anchor', 'middle')
       .attr ('fill', '#000')
+      .attr ('transform', 'matrix(-0.00 ,-1.00, 1.00, -0.00, 0,0)')
       .attr ('stroke', 'none')
-      .attr ('font-size', 10)
+      .attr ('font-size', 14)
       .attr ('dy', '1em');
   }
 
@@ -257,7 +282,7 @@ function drawGanttChart (state) {
           return d[1] * theGap / 2 + theTopPad;
         }
       })
-      .attr ('font-size', 11)
+      .attr ('font-size', 14)
       .attr ('text-anchor', 'start')
       .attr ('text-height', 14)
       .attr ('fill', function (d) {
