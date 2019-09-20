@@ -1,12 +1,11 @@
 import * as d3 from 'd3';
 
-function drawGanttChart (state) {
+function drawGanttChart (data) {
   var w = 1350;
-  var h = 850;
+  var h = 1000;
 
   var svg = d3
     .selectAll ('#chart')
-    //.selectAll("svg")
     .append ('svg')
     .attr ('width', w)
     .attr ('height', h)
@@ -17,10 +16,10 @@ function drawGanttChart (state) {
   var timeScale = d3
     .scaleTime ()
     .domain ([
-      d3.min (state.data.eventsList, function (d) {
+      d3.min (data, function (d) {
         return dateFormat (d.startTime);
       }),
-      d3.max (state.data.eventsList, function (d) {
+      d3.max (data, function (d) {
         return dateFormat (d.endTime);
       }),
     ])
@@ -28,15 +27,15 @@ function drawGanttChart (state) {
 
   var categories = [];
 
-  for (var i = 0; i < state.data.eventsList.length; i++) {
-    categories.push (state.data.eventsList[i].type);
+  for (var i = 0; i < data.length; i++) {
+    categories.push (data[i].type);
   }
 
   var catsUnfiltered = categories; //for vert labels
 
   categories = checkUnique (categories);
 
-  makeGant (state.data.eventsList, w, h);
+  makeGant (data, w, h);
 
   function makeGant (tasks, pageWidth, pageHeight) {
     var barHeight = 60;
@@ -226,7 +225,7 @@ function drawGanttChart (state) {
       .axisBottom (timeScale)
       .ticks (d3.timeDay, 1)
       .tickSize (-h + theTopPad + 20, 0, 0)
-      .tickFormat (d3.timeFormat ('%d %b'));
+      .tickFormat (d3.timeFormat ('%B %e, %Y %I %p'));
 
     var grid = svg
       .append ('g')
@@ -238,7 +237,7 @@ function drawGanttChart (state) {
       .selectAll ('text')
       .style ('text-anchor', 'middle')
       .attr ('fill', '#000')
-      .attr ('transform', 'matrix(-0.00 ,-1.00, 1.00, -0.00, 0,0)')
+      .attr ('transform', 'matrix(-0.00 ,-1.00, 1.00, -0.00, 5, -75)')
       .attr ('stroke', 'none')
       .attr ('font-size', 14)
       .attr ('dy', '1em');
