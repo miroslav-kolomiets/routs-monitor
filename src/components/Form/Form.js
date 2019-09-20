@@ -31,12 +31,6 @@ export default class Form extends React.Component {
     });
   };
 
-  handleSubmit = event => {
-    event.preventDefault ();
-
-    console.log (this.state);
-  };
-
   render () {
     return (
       <form className="form">
@@ -88,7 +82,7 @@ export default class Form extends React.Component {
           <Button
             className="btn btn-primary"
             value="Update"
-            onClick={this.handleSubmit}
+            onClick={this.props.handleSubmit}
           />
         </div>
       </form>

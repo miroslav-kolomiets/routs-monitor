@@ -9,7 +9,7 @@ export default class Header extends React.Component {
       <header className="header">
         <Logo />
         <div className="column">
-          <Form />
+          <Form handleSubmit={this.props.handleSubmit} />
         </div>
       </header>
     );

@@ -2,15 +2,9 @@ import React from 'react';
 import './GanttChart.scss';
 import {drawGanttChart} from './drawGanttChart';
 
-import * as eventsList from './data';
-
 export default class GanttChart extends React.Component {
-  state = {
-    data: eventsList,
-  };
-
-  componentDidMount () {
-    drawGanttChart (this.state);
+  componentDidUpdate () {
+    drawGanttChart (this.props.data);
   }
 
   render () {
