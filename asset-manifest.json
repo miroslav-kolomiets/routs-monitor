@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/routs-monitor/static/css/main.f5e46756.chunk.css",
-    "main.js": "/routs-monitor/static/js/main.9b8bd73d.chunk.js",
-    "main.js.map": "/routs-monitor/static/js/main.9b8bd73d.chunk.js.map",
-    "runtime~main.js": "/routs-monitor/static/js/runtime~main.5ebeaedc.js",
-    "runtime~main.js.map": "/routs-monitor/static/js/runtime~main.5ebeaedc.js.map",
+    "main.css": "/routs-monitor/static/css/main.843467b0.chunk.css",
+    "main.js": "/routs-monitor/static/js/main.4e8732d2.chunk.js",
+    "main.js.map": "/routs-monitor/static/js/main.4e8732d2.chunk.js.map",
+    "runtime~main.js": "/routs-monitor/static/js/runtime~main.dd00c2c2.js",
+    "runtime~main.js.map": "/routs-monitor/static/js/runtime~main.dd00c2c2.js.map",
     "static/css/2.ff9ea1f9.chunk.css": "/routs-monitor/static/css/2.ff9ea1f9.chunk.css",
-    "static/js/2.d17cd3d1.chunk.js": "/routs-monitor/static/js/2.d17cd3d1.chunk.js",
-    "static/js/2.d17cd3d1.chunk.js.map": "/routs-monitor/static/js/2.d17cd3d1.chunk.js.map",
+    "static/js/2.97b9312b.chunk.js": "/routs-monitor/static/js/2.97b9312b.chunk.js",
+    "static/js/2.97b9312b.chunk.js.map": "/routs-monitor/static/js/2.97b9312b.chunk.js.map",
     "index.html": "/routs-monitor/index.html",
-    "precache-manifest.0abd802b94eedc02acd5a56304643c3f.js": "/routs-monitor/precache-manifest.0abd802b94eedc02acd5a56304643c3f.js",
+    "precache-manifest.9f3250adcea2006e2eb59de2c6df09d9.js": "/routs-monitor/precache-manifest.9f3250adcea2006e2eb59de2c6df09d9.js",
     "service-worker.js": "/routs-monitor/service-worker.js",
     "static/css/2.ff9ea1f9.chunk.css.map": "/routs-monitor/static/css/2.ff9ea1f9.chunk.css.map",
-    "static/css/main.f5e46756.chunk.css.map": "/routs-monitor/static/css/main.f5e46756.chunk.css.map"
+    "static/css/main.843467b0.chunk.css.map": "/routs-monitor/static/css/main.843467b0.chunk.css.map"
   }
 }
