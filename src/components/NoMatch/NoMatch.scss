@@ -1,0 +1,40 @@
+.page-404 {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .page-404__error {
+    font-family: Arial;
+    font-size: 32px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    color: #444444;
+    padding-bottom: 15px;
+
+    .error {
+      color: red;
+    }
+
+    .error-href {
+      color: darkgray;
+      font-size: 30px;
+      font-style: italic;
+    }
+  }
+
+  .page-404__message {
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #666666;
+  }
+}
