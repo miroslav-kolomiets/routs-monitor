@@ -4,6 +4,7 @@ import {drawGanttChart} from './drawGanttChart';
 
 export default class GanttChart extends React.Component {
   componentDidUpdate () {
+    document.getElementById ('chart').innerHTML = null;
     drawGanttChart (this.props.data);
   }
 
