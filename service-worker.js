@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/routs-monitor/precache-manifest.e3cb0e5edc9c14f230af01ddf33e1679.js"
+  "/routs-monitor/precache-manifest.095a15090660b788b023e4b364abd3e3.js"
 );
 
 self.addEventListener('message', (event) => {
