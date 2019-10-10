@@ -98,6 +98,7 @@ function drawGanttChart (data) {
           }
         }
       })
+      .attr ('class', 'main-block')
       .attr ('opacity', 0.2);
 
     var rectangles = svg

@@ -1,39 +1,46 @@
-import React, {PureComponent} from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import GanttChart from './components/GanttChart/GanttChart';
 import './App.scss';
 
 import Header from './components/Header/Header';
 
-export default class App extends PureComponent {
-  state = {
-    data: [],
-  };
+function App () {
+  const content = useSelector (state => state);
+  const dispatch = useDispatch ();
 
-  handleSubmit = event => {
+  function getData () {
+    return dispatch => {
+      fetch (`./data.json`).then (res => res.json ()).then (data => {
+        dispatch ({
+          type: 'FETCH_DATA',
+          data: data,
+        });
+        console.log ('data:', data);
+      });
+    };
+  }
+
+  function onFetchdata () {
+    dispatch (getData ());
+  }
+
+  function handleSubmit (event) {
     event.preventDefault ();
 
-    console.log (JSON.stringify (this.state));
-  };
-
-  async componentDidMount () {
-    const response = await fetch (`./data.json`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    });
-    const json = await response.json ();
-    this.setState ({
-      data: json,
-    });
+    onFetchdata ();
   }
 
-  render () {
-    return (
-      <div>
-        <Header handleSubmit={this.handleSubmit} />
-        <GanttChart data={this.state.data} />
-      </div>
-    );
-  }
+  useEffect (() => {
+    dispatch (getData ());
+  }, []);
+
+  return (
+    <div>
+      <Header handleSubmit={handleSubmit} />
+      <GanttChart data={content.data} />
+    </div>
+  );
 }
+
+export default App;
