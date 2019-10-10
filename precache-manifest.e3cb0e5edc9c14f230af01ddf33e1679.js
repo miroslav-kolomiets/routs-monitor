@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "836c44efd04d170b11f68658000c37fa",
+    "revision": "9d2b5951bacb2d76c0fb71311b43638b",
     "url": "/routs-monitor/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/routs-monitor/static/css/2.ff9ea1f9.chunk.css"
   },
   {
-    "revision": "2206647164c21e64babc",
+    "revision": "59e773056c7665f174a9",
     "url": "/routs-monitor/static/css/main.843467b0.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/routs-monitor/static/js/2.97b9312b.chunk.js"
   },
   {
-    "revision": "2206647164c21e64babc",
-    "url": "/routs-monitor/static/js/main.4e8732d2.chunk.js"
+    "revision": "59e773056c7665f174a9",
+    "url": "/routs-monitor/static/js/main.5875e056.chunk.js"
   },
   {
     "revision": "2cbbca7325c4f1234eee",
