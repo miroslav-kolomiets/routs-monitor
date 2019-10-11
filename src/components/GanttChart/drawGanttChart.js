@@ -184,15 +184,15 @@ function drawGanttChart (data) {
         //console.log(this);
         var tag = '';
 
-        tag = `<p class="text text--size--14">${d3
-          .select (this)
-          .data ()[0].details}</p>
-          <p class="text text--size--14">Date: ${d3
-                                                 .select (this)
-                                                 .data ()[0].startTime}</p>
-          <p class="text text--size--14">Time: ${d3
-                                                 .select (this)
-                                                 .data ()[0].startTime}</p>
+        tag = `<p class="tag-details">${d3.select (this).data ()[0].details}</p>
+          <p class="tag-date">
+          <span class="tag-date__label">Date:</span> ${d3
+                                                       .select (this)
+                                                       .data ()[0].startTime}</p>
+          <p class="tag-time">
+          <span class="tag-time__label">Time:</span> ${d3
+                                                       .select (this)
+                                                       .data ()[0].startTime}</p>
           <div class="tag__controls">
             <div class="tag__controls-row">
               <button class="btn btn-secondary">Experiment</button>
@@ -214,6 +214,24 @@ function drawGanttChart (data) {
         output.style.top = y;
         output.style.left = x;
         output.style.display = 'block';
+
+        document.addEventListener ('click', evt => {
+          const tag = document.getElementById ('tag');
+          let targetElement = evt.target;
+
+          do {
+            if (targetElement == tag) {
+              return;
+            }
+
+            targetElement = targetElement.parentNode;
+          } while (targetElement);
+
+          if (tag.style.display === 'block') {
+            console.log ('block');
+          }
+          // document.getElementById ('tag').style.display = 'flex';
+        });
       })
       .on ('mouseout', function () {
         var output = document.getElementById ('tag');
