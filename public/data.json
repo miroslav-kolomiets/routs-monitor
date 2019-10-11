@@ -1,82 +1,122 @@
-[  
-  {  
+[ 
+  { 
      "task":"desk12",
+     "datesRange":{ 
+        "2019-10-01T00:00:00Z":"startTime",
+        "2019-10-04T00:00:00Z":"endTime"
+     },
      "load":"100%",
      "type":"INTEGR",
-     "startTime":"2013-2-1",
-     "endTime":"2013-2-4",
+     "startTime":"2019-10-1",
+     "endTime":"2019-10-4",
      "details":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
-  {  
+  { 
      "task":"desk19",
+     "datesRange":{ 
+        "2019-10-06T00:00:00Z":"startTime",
+        "2019-10-09T00:00:00Z":"endTime"
+     },
      "load":"100%",
      "type":"INTEGR",
-     "startTime":"2013-2-6",
-     "endTime":"2013-2-9",
+     "startTime":"2019-10-6",
+     "endTime":"2019-10-9",
      "details":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
-  {  
+  { 
      "task":"desk10",
+     "datesRange":{ 
+        "2019-10-10T00:00:00Z":"startTime",
+        "2019-10-05T00:00:00Z":"endTime"
+     },
      "load":"100%",
      "type":"APP",
-     "startTime":"2013-2-2",
-     "endTime":"2013-2-5",
+     "startTime":"2019-10-2",
+     "endTime":"2019-10-5",
      "details":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
-  {  
+  { 
      "task":"desk11",
+     "datesRange":{ 
+        "2019-10-06T00:00:00Z":"startTime",
+        "2019-10-09T00:00:00Z":"endTime"
+     },
      "load":"100%",
      "type":"APP",
-     "startTime":"2013-2-6",
-     "endTime":"2013-2-9",
+     "startTime":"2019-10-6",
+     "endTime":"2019-10-9",
      "details":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
-  {  
+  { 
      "task":"desk9",
+     "datesRange":{ 
+        "2019-10-09T00:00:00Z":"startTime",
+        "2019-10-12T00:00:00Z":"endTime"
+     },
      "load":"100%",
      "type":"MOB",
-     "startTime":"2013-2-9",
-     "endTime":"2013-2-12",
+     "startTime":"2019-10-9",
+     "endTime":"2019-10-12",
      "details":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
-  {  
+  { 
      "task":"desk31",
+     "datesRange":{ 
+        "2019-10-12T00:00:00Z":"startTime",
+        "2019-10-15T00:00:00Z":"endTime"
+     },
      "load":"100%",
      "type":"MOB",
-     "startTime":"2013-2-12",
-     "endTime":"2013-2-15",
+     "startTime":"2019-10-12",
+     "endTime":"2019-10-15",
      "details":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
-  {  
+  { 
      "task":"desk23",
+     "datesRange":{ 
+        "2019-10-08T00:00:00Z":"startTime",
+        "2019-10-11T00:00:00Z":"endTime"
+     },
      "load":"100%",
      "type":"NEW",
-     "startTime":"2013-2-8",
-     "endTime":"2013-2-11",
+     "startTime":"2019-10-8",
+     "endTime":"2019-10-11",
      "details":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
-  {  
+  { 
      "task":"desk3",
+     "datesRange":{ 
+        "2019-10-13T00:00:00Z":"startTime",
+        "2019-10-16T00:00:00Z":"endTime"
+     },
      "load":"100%",
      "type":"NEW",
-     "startTime":"2013-2-13",
-     "endTime":"2013-2-16",
+     "startTime":"2019-10-13",
+     "endTime":"2019-10-16",
      "details":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
-  {  
+  { 
      "task":"desk23",
+     "datesRange":{ 
+        "2019-10-08T00:00:00Z":"startTime",
+        "2019-10-11T00:00:00Z":"endTime"
+     },
      "load":"100%",
      "type":"OLD",
-     "startTime":"2013-2-8",
-     "endTime":"2013-2-11",
+     "startTime":"2019-10-8",
+     "endTime":"2019-10-11",
      "details":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
-  {  
+  { 
      "task":"desk3",
+     "datesRange":{ 
+        "2019-10-13T00:00:00Z":"startTime",
+        "2019-10-16T00:00:00Z":"endTime"
+     },
      "load":"100%",
      "type":"OLD",
-     "startTime":"2013-2-13",
-     "endTime":"2013-2-16",
+     "startTime":"2019-10-13",
+     "endTime":"2019-10-16",
      "details":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   }
 ]

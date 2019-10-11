@@ -17,6 +17,25 @@
 .react-datepicker {
   padding: 10px;
 
+  .react-datepicker__header {
+    padding-top: 0;
+  }
+
+  .react-datepicker__current-month {
+    display: none;
+  }
+
+  .react-datepicker__day-name {
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.67;
+    letter-spacing: normal;
+    text-align: center;
+    color: #808080;
+  }
+
   .react-datepicker__current-month,
   .react-datepicker-time__header,
   .react-datepicker-year-header {

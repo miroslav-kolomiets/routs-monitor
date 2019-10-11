@@ -2,11 +2,10 @@ import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import GanttChart from './components/GanttChart/GanttChart';
-import Login from './components/Login/Login';
 import NoMatch from './components/NoMatch/NoMatch';
-import './App.scss';
-
 import Header from './components/Header/Header';
+import Login from './components/Login/Login';
+import './App.scss';
 
 function App () {
   const content = useSelector (state => state);
@@ -27,12 +26,6 @@ function App () {
     dispatch (getData ());
   }
 
-  function handleSubmit (event) {
-    event.preventDefault ();
-
-    onFetchdata ();
-  }
-
   useEffect (() => {
     dispatch (getData ());
   }, []);
@@ -45,7 +38,7 @@ function App () {
         </Route>
         <Route path="/main">
           <div>
-            <Header handleSubmit={handleSubmit} />
+            <Header />
             <GanttChart data={content.data} />
           </div>
         </Route>
