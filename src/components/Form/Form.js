@@ -32,10 +32,9 @@ function Form () {
     });
   }
 
-  function handleSubmit (event) {
-    event.preventDefault ();
-
-    const resultProductData = content.data.filter (a => {
+  // Function fo demo
+  function fakeServerFilterResponse (data) {
+    const resultProductData = data.filter (a => {
       let hitDates = a.datesRange || {};
       hitDates = Object.keys (hitDates);
       hitDates = hitDates.map (function (date) {
@@ -48,11 +47,18 @@ function Form () {
       return hitDateMatches.length > 0;
     });
 
-    dispatch ({
-      type: 'FETCH_DATA',
-      data: resultProductData,
+    return resultProductData;
+  }
+
+  function handleSubmit (event) {
+    event.preventDefault ();
+
+    fetch (`./data.json`).then (res => res.json ()).then (data => {
+      dispatch ({
+        type: 'FETCH_DATA',
+        data: fakeServerFilterResponse (data),
+      });
     });
-    console.log (resultProductData);
   }
 
   return (
