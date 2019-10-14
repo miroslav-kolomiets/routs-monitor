@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import GanttChart from './components/GanttChart/GanttChart';
 import NoMatch from './components/NoMatch/NoMatch';
+import Loader from './components/Loader/Loader';
 import Header from './components/Header/Header';
 import Login from './components/Login/Login';
 import './App.scss';
@@ -27,6 +28,7 @@ function App () {
   }
 
   useEffect (() => {
+    onFetchdata ();
     dispatch (getData ());
   }, []);
 
@@ -39,7 +41,7 @@ function App () {
         <Route path="/main">
           <div>
             <Header />
-            <GanttChart data={content.data} />
+            {content.data ? <GanttChart data={content.data} /> : <Loader />}
           </div>
         </Route>
         <Route path="*">
