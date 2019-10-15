@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/routs-monitor/static/css/main.8e0d4b0f.chunk.css",
-    "main.js": "/routs-monitor/static/js/main.66bb5455.chunk.js",
-    "main.js.map": "/routs-monitor/static/js/main.66bb5455.chunk.js.map",
+    "main.css": "/routs-monitor/static/css/main.763ff823.chunk.css",
+    "main.js": "/routs-monitor/static/js/main.516aaacf.chunk.js",
+    "main.js.map": "/routs-monitor/static/js/main.516aaacf.chunk.js.map",
     "runtime~main.js": "/routs-monitor/static/js/runtime~main.dd00c2c2.js",
     "runtime~main.js.map": "/routs-monitor/static/js/runtime~main.dd00c2c2.js.map",
     "static/css/2.ff9ea1f9.chunk.css": "/routs-monitor/static/css/2.ff9ea1f9.chunk.css",
     "static/js/2.8de9c473.chunk.js": "/routs-monitor/static/js/2.8de9c473.chunk.js",
     "static/js/2.8de9c473.chunk.js.map": "/routs-monitor/static/js/2.8de9c473.chunk.js.map",
     "index.html": "/routs-monitor/index.html",
-    "precache-manifest.fae03c6d62394aaa70a590a0bfcd123e.js": "/routs-monitor/precache-manifest.fae03c6d62394aaa70a590a0bfcd123e.js",
+    "precache-manifest.9cbc57b39472cc6016d8cc344ae63135.js": "/routs-monitor/precache-manifest.9cbc57b39472cc6016d8cc344ae63135.js",
     "service-worker.js": "/routs-monitor/service-worker.js",
     "static/css/2.ff9ea1f9.chunk.css.map": "/routs-monitor/static/css/2.ff9ea1f9.chunk.css.map",
-    "static/css/main.8e0d4b0f.chunk.css.map": "/routs-monitor/static/css/main.8e0d4b0f.chunk.css.map",
+    "static/css/main.763ff823.chunk.css.map": "/routs-monitor/static/css/main.763ff823.chunk.css.map",
     "static/media/loader.svg": "/routs-monitor/static/media/loader.fb5bf093.svg"
   }
 }
