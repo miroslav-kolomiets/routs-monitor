@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 
 function drawGanttChart (data) {
-  var w = 1350;
+  var w = 1400;
   var h = 1000;
 
   var svg = d3
@@ -100,6 +100,28 @@ function drawGanttChart (data) {
       })
       .attr ('class', 'main-block')
       .attr ('opacity', 0.2);
+
+    var bigLines = svg
+      .append ('g')
+      .selectAll ('rect')
+      .data (theArray)
+      .enter ()
+      .append ('line')
+      .style ('stroke', '#777')
+      .style ('stroke-dasharray', '5')
+      .attr ('x1', 65)
+      .attr ('y1', function (d, i) {
+        return i * theGap + theTopPad - 2;
+      })
+      .attr ('x2', w - 70)
+      .attr ('y2', function (d, i) {
+        return i * theGap + theTopPad - 2;
+      })
+      .attr ('width', function (d) {
+        return w - theSidePad / 2;
+      })
+      .attr ('fill', '#red')
+      .attr ('opacity', 0.5);
 
     var rectangles = svg
       .append ('g')
@@ -245,6 +267,66 @@ function drawGanttChart (data) {
       .ticks (d3.timeDay, 1)
       .tickSize (-h + theTopPad + 20, 0, 0)
       .tickFormat (d3.timeFormat ('%B %e, %Y %I %p'));
+
+    // x-axis line
+    svg
+      .append ('line') // attach a line
+      .style ('stroke', '#2c435c') // colour the line
+      .attr ('x1', 75) // x position of the first end of the line
+      .attr ('y1', 750) // y position of the first end of the line
+      .attr ('x2', w - 40) // x position of the second end of the line
+      .attr ('y2', 750);
+
+    svg
+      .append ('svg')
+      .attr ('width', 20)
+      .attr ('height', 20)
+      .attr ('x', w - 60)
+      .attr ('y', 745)
+      .append ('polyline')
+      .attr ('points', '10 5, 0 0, 0 10')
+      .style ('fill', '#2c435c');
+
+    // y-axis line
+    svg
+      .append ('line') // attach a line
+      .style ('stroke', '#2c435c') // colour the line
+      .attr ('x1', 75) // x position of the first end of the line
+      .attr ('y1', 40) // y position of the first end of the line
+      .attr ('x2', 75) // x position of the second end of the line
+      .attr ('y2', h - 250);
+
+    svg
+      .append ('svg')
+      .attr ('width', 20)
+      .attr ('height', 20)
+      .attr ('x', 70)
+      .attr ('y', 30)
+      .append ('polyline')
+      .attr ('points', '10 10, 5 0, 0 10')
+      .style ('fill', '#2c435c');
+
+    // y-axis text
+    svg
+      .append ('text')
+      .attr ('x', 45)
+      .attr ('y', 20)
+      .text ('Routes')
+      .attr ('font-family', 'sans-serif')
+      .attr ('font-size', '18px')
+      .attr ('font-weight', 'bold')
+      .attr ('fill', '#414141');
+
+    // x-axis text
+    svg
+      .append ('text')
+      .attr ('x', w - 200)
+      .attr ('y', h - 220)
+      .text ('Events Timeline')
+      .attr ('font-family', 'sans-serif')
+      .attr ('font-size', '18px')
+      .attr ('font-weight', 'bold')
+      .attr ('fill', '#414141');
 
     var grid = svg
       .append ('g')
