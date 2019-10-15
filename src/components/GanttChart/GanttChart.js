@@ -6,7 +6,7 @@ function GanttChart (props) {
   useEffect (() => {
     document.getElementById ('chart').innerHTML = null;
     drawGanttChart (props.data);
-  }, []);
+  });
 
   return (
     <div id="container">
