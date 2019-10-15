@@ -1,6 +1,6 @@
 import React from 'react';
 import loader from '../Loader/loader.svg';
-import './Loader.css';
+import './Loader.scss';
 
 class Loader extends React.Component {
   render () {
