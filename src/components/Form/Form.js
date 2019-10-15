@@ -32,7 +32,7 @@ function Form () {
     });
   }
 
-  // Function fo demo
+  // Function for demo
   function fakeServerFilterResponse (data) {
     const resultProductData = data.filter (a => {
       let hitDates = a.datesRange || {};
@@ -47,7 +47,9 @@ function Form () {
       return hitDateMatches.length > 0;
     });
 
-    return resultProductData;
+    if (resultProductData.length > 0) {
+      return resultProductData;
+    }
   }
 
   function handleSubmit (event) {
@@ -71,7 +73,7 @@ function Form () {
           <DatePicker
             selected={content.startDate}
             timeInputLabel="Time:"
-            dateFormat="MM/dd/yyyy h:mm aa"
+            dateFormat="yyyy-MM-dd hh:mm"
             showTimeInput
             peekNextMonth
             showMonthDropdown
@@ -93,7 +95,7 @@ function Form () {
           <DatePicker
             selected={content.endDate}
             timeInputLabel="Time:"
-            dateFormat="MM/dd/yyyy h:mm aa"
+            dateFormat="yyyy-MM-dd hh:mm"
             showTimeInput
             peekNextMonth
             showMonthDropdown

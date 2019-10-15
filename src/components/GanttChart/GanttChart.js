@@ -1,19 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './GanttChart.scss';
 import {drawGanttChart} from './drawGanttChart';
 
-export default class GanttChart extends React.Component {
-  componentDidUpdate () {
+function GanttChart (props) {
+  useEffect (() => {
     document.getElementById ('chart').innerHTML = null;
-    drawGanttChart (this.props.data);
-  }
+    drawGanttChart (props.data);
+  }, []);
 
-  render () {
-    return (
-      <div id="container">
-        <div id="chart" />
-        <div id="tag" className="tag" />
-      </div>
-    );
-  }
+  return (
+    <div id="container">
+      <div id="chart" />
+      <div id="tag" className="tag" />
+    </div>
+  );
 }
+
+export default GanttChart;

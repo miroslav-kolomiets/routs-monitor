@@ -1,4 +1,4 @@
-import React, {useEffect, Fragment} from 'react';
+import React, {Fragment} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import GanttChart from './components/GanttChart/GanttChart';
@@ -26,11 +26,6 @@ function App () {
   function onFetchdata () {
     dispatch (getData ());
   }
-
-  useEffect (() => {
-    onFetchdata ();
-    dispatch (getData ());
-  }, []);
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
