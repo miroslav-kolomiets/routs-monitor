@@ -1,4 +1,7 @@
-function reducer (state = {data: '', startDate: '', endDate: ''}, action) {
+function reducer (
+  state = {data: '', startDate: new Date (), endDate: new Date ()},
+  action
+) {
   switch (action.type) {
     case 'FETCH_DATA':
       return {
