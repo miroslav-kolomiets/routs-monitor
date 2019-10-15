@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, Fragment} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import GanttChart from './components/GanttChart/GanttChart';
@@ -39,10 +39,10 @@ function App () {
           <Login />
         </Route>
         <Route path="/main">
-          <div>
+          <Fragment>
             <Header />
             {content.data ? <GanttChart data={content.data} /> : <Loader />}
-          </div>
+          </Fragment>
         </Route>
         <Route path="*">
           <NoMatch />
