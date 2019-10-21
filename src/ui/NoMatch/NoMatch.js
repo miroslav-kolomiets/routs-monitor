@@ -1,10 +1,8 @@
 import React from 'react';
-import {useLocation} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import './NoMatch.scss';
 
-function NoMatch () {
-  let location = useLocation ();
-
+function NoMatch({history}) {
   return (
     <div className="page-404">
       <p className="page-404__error">
@@ -12,7 +10,7 @@ function NoMatch () {
         {' '}
         Page
         {' '}
-        <span className="error-href">{location.pathname}</span>
+        <span className="error-href">{history.location.pathname}</span>
         {' '}
         Not Found
       </p>
@@ -23,4 +21,6 @@ function NoMatch () {
   );
 }
 
-export default NoMatch;
+const NoMatchWithRouter = withRouter (NoMatch);
+
+export default NoMatchWithRouter;

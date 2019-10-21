@@ -4,15 +4,9 @@ import Input from '../Input/Input';
 import {useDispatch, useSelector} from 'react-redux';
 import DatePicker from 'react-datepicker';
 import Select from '../Select/Select';
+import {selectOptions, datepickerSettings} from './constants';
 import './Form.scss';
 import 'react-datepicker/dist/react-datepicker.css';
-
-const options = [
-  {value: 'Last 30 minutes', label: 'Last 30 minutes'},
-  {value: 'Today', label: 'Today'},
-  {value: 'Yesterday', label: 'Yesterday'},
-  {value: 'Last week', label: 'Last week'},
-];
 
 function Form () {
   const content = useSelector (state => state);
@@ -64,7 +58,7 @@ function Form () {
   }
 
   return (
-    <form className="form">
+    <div className="form">
       <div className="form__row">
         <div className="form__group form__column">
           <label className="form-label" htmlFor="from">
@@ -72,19 +66,19 @@ function Form () {
           </label>
           <DatePicker
             selected={content.startDate}
-            timeInputLabel="Time:"
-            dateFormat="yyyy-MM-dd hh:mm"
+            timeInputLabel={datepickerSettings.timeInputLabel}
+            dateFormat={datepickerSettings.dateFormat}
+            dropdownMode={datepickerSettings.dropdownMode}
+            maxDate={datepickerSettings.maxDate}
             showTimeInput
             peekNextMonth
             showMonthDropdown
             showYearDropdown
-            dropdownMode="select"
-            maxDate={new Date ()}
             customInput={<Input className={'input-field'} />}
             onChange={date => setStartDate (date)}
           />
           <small id="dateHelp" className="form-text text-muted">
-            YYYY-MM-DD HH:MM
+            {datepickerSettings.dateHelp}
           </small>
         </div>
 
@@ -94,31 +88,31 @@ function Form () {
           </label>
           <DatePicker
             selected={content.endDate}
-            timeInputLabel="Time:"
-            dateFormat="yyyy-MM-dd hh:mm"
+            timeInputLabel={datepickerSettings.timeInputLabel}
+            dateFormat={datepickerSettings.dateFormat}
+            dropdownMode={datepickerSettings.dropdownMode}
+            maxDate={datepickerSettings.maxDate}
             showTimeInput
             peekNextMonth
             showMonthDropdown
             showYearDropdown
-            dropdownMode="select"
-            maxDate={new Date ()}
             customInput={<Input className={'input-field'} />}
             onChange={date => setEndDate (date)}
           />
           <small id="dateHelp" className="form-text text-muted">
-            YYYY-MM-DD HH:MM
+            {datepickerSettings.dateHelp}
           </small>
         </div>
       </div>
       <div className="form__row">
-        <Select options={options} placeholder="Quick ranges" />
+        <Select options={selectOptions} placeholder="Quick ranges" />
         <Button
           className="btn btn-primary"
           value="Update"
           onClick={handleSubmit}
         />
       </div>
-    </form>
+    </div>
   );
 }
 
