@@ -8,7 +8,7 @@ import Header from '../ui/Header/Header';
 import Login from '../ui/Login/Login';
 
 function Router () {
-  const content = useSelector (state => state);
+  const state = useSelector (state => state);
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
@@ -19,7 +19,9 @@ function Router () {
         <Route path="/main">
           <Fragment>
             <Header />
-            {content.data ? <GanttChart data={content.data} /> : <Loader />}
+            {state.fetchData.data
+              ? <GanttChart data={state.fetchData.data} />
+              : <Loader />}
           </Fragment>
         </Route>
         <Route path="*">
