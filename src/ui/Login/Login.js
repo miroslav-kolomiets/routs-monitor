@@ -1,20 +1,17 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import './Login.scss';
 
-function Login () {
-  let history = useHistory ();
-
-  function handleSubmit (event) {
-    event.preventDefault ();
+function Login({history}) {
+  function handleSubmit () {
     history.push ('/main');
   }
 
   return (
     <div className="login-page">
-      <form className="login-form">
+      <div className="login-form">
         <label className="from" htmlFor="from">
           <Input className="login-form__input" placeholder="Email" />
         </label>
@@ -29,9 +26,11 @@ function Login () {
             onClick={handleSubmit}
           />
         </div>
-      </form>
+      </div>
     </div>
   );
 }
 
-export default Login;
+const LoginWithRouter = withRouter (Login);
+
+export default LoginWithRouter;
